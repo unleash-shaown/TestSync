@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="SMSSenderProxy" startOnLoad="true" transports="https http" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <endpoint>
+            <address uri="jms:/SMSStore?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&amp;java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&amp;java.naming.provider.url=tcp://localhost:61616&amp;transport.jms.DestinationType=queue&amp;transport.jms.ReplyDestination=SMSReceiveNotificationStore">
+                <suspendOnFailure>
+                    <initialDuration>-1</initialDuration>
+                    <progressionFactor>1</progressionFactor>
+                </suspendOnFailure>
+                <markForSuspension>
+                    <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                </markForSuspension>
+            </address>
+        </endpoint>
+        <inSequence>
+            <property expression="$url:PARAM1" name="queryParam" scope="default" type="STRING"/>
+            <property name="transport.jms.ContentTypeProperty" scope="axis2" type="STRING" value="Content-Type"/>
+            <property name="JMS_WAIT_REPLY" scope="axis2" type="STRING" value="60000"/>
+            <property name="JMS_TIME_TO_LIVE" scope="axis2" type="STRING" value="20000"/>
+            <log level="custom">
+                <property expression="$ctx:queryParam" name="MESSAGE_ID"/>
+            </log>
+        </inSequence>
+        <outSequence>
+            <property action="remove" name="TRANSPORT_HEADERS" scope="axis2"/>
+            <property action="remove" name="ClientApiNonBlocking" scope="axis2"/>
+            <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+            <send/>
+        </outSequence>
+        <faultSequence/>
+    </target>
+</proxy>

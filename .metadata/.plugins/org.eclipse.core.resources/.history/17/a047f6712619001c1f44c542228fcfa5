@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="SMSSenderProxy" startOnLoad="true" transports="https http" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <endpoint>
+            <address uri="rabbitmq:/SMSStore?rabbitmq.server.host.name=localhost&amp;rabbitmq.server.port=5672&amp;rabbitmq.server.user.name=guest&amp;rabbitmq.server.password=guest&amp;rabbitmq.queue.name=SMSStore">
+                <suspendOnFailure>
+                    <initialDuration>0</initialDuration>
+                    <progressionFactor>1</progressionFactor>
+                    <maximumDuration>0</maximumDuration>
+                </suspendOnFailure>
+                <markForSuspension>
+                    <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                </markForSuspension>
+            </address>
+        </endpoint>
+        <inSequence>
+            <property name="rabbitmq.message.content.type" scope="axis2" type="STRING" value="Content-Type"/>
+            <property action="remove" name="TRANSPORT_HEADERS" scope="axis2"/>
+            <header expression="$ctx:queryParam" name="PARAM1" scope="transport"/>
+            <payloadFactory media-type="json">
+                <format>{
+	"time": "$1"
+}</format>
+                <args>
+                    <arg evaluator="xml" expression="get-property(&quot;SYSTEM_DATE&quot;, &quot;yyyy.MM.dd G 'at' HH:mm:ss z&quot;)"/>
+                </args>
+            </payloadFactory>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence/>
+    </target>
+</proxy>

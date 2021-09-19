@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="SMSForwardProxy" startOnLoad="true" transports="jms" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <inSequence>
+            <log level="custom">
+                <property expression="json-eval($)" name="PAYLOAD"/>
+                <property expression="$trp:PARAM1" name="PRAMA1"/>
+            </log>
+            <call blocking="true">
+                <endpoint>
+                    <http method="post" uri-template="http://localhost:8080/services/SimpleStockQuoteService">
+                        <suspendOnFailure>
+                            <initialDuration>-1</initialDuration>
+                            <progressionFactor>-1</progressionFactor>
+                            <maximumDuration>0</maximumDuration>
+                        </suspendOnFailure>
+                        <markForSuspension>
+                            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                        </markForSuspension>
+                    </http>
+                </endpoint>
+            </call>
+        </inSequence>
+        <outSequence>
+            <log level="full"/>
+            <log level="custom">
+                <property expression="get-property('MessageID')" name="MESSAGE_ID"/>
+            </log>
+            <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+            <send/>
+        </outSequence>
+        <faultSequence/>
+    </target>
+    <parameter name="transport.jms.DestinationType">queue</parameter>
+    <parameter name="transport.jms.Destination">SMSStore</parameter>
+    <parameter name="transport.jms.ConcurrentConsumers">20</parameter>
+    <parameter name="transport.jms.ContentType">
+        <rules>
+            <jmsProperty>contentType</jmsProperty>
+            <default>application/json</default>
+        </rules>
+    </parameter>
+    <parameter name="transport.jms.MaxConcurrentConsumers">20</parameter>
+    <parameter name="transport.jms.ConnectionFactory">myQueueConnectionFactory</parameter>
+</proxy>

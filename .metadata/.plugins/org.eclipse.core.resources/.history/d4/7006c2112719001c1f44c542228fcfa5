@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="SMSForwardProxy" startOnLoad="true" transports="rabbitmq" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <inSequence>
+            <log level="custom">
+                <property expression="json-eval($)" name="PAYLOAD"/>
+                <property expression="$trp:PARAM1" name="PRAMA1"/>
+            </log>
+            <property name="SET_ROLLBACK_ONLY" scope="axis2" type="STRING" value="true"/>
+            <call blocking="true">
+                <endpoint>
+                    <http method="post" uri-template="http://localhost:8080/services/SimpleStockQuoteService">
+                        <suspendOnFailure>
+                            <initialDuration>-1</initialDuration>
+                            <progressionFactor>-1</progressionFactor>
+                            <maximumDuration>0</maximumDuration>
+                        </suspendOnFailure>
+                        <markForSuspension>
+                            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                        </markForSuspension>
+                    </http>
+                </endpoint>
+            </call>
+            <log level="full"/>
+            <log level="custom">
+                <property expression="get-property('MessageID')" name="MESSAGE_ID"/>
+            </log>
+            <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence>
+            <property name="SET_ROLLBACK_ONLY" scope="axis2" type="STRING" value="true"/>
+        </faultSequence>
+    </target>
+    <parameter name="rabbitmq.concurrent.consumer.count">30</parameter>
+    <parameter name="rabbitmq.server.retry.interval">10000</parameter>
+    <parameter name="rabbitmq.replyto.name">SMSReceiveNotificationStore</parameter>
+    <parameter name="rabbitmq.connection.factory">AMQPConnectionFactory</parameter>
+    <parameter name="rabbitmq.server.retry.count">5</parameter>
+    <parameter name="rabbitmq.queue.name">SMSStore</parameter>
+    <parameter name="rabbitmq.message.content.type">application/json</parameter>
+</proxy>
