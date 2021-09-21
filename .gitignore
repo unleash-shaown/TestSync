@@ -1,0 +1,29 @@
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+out/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### Linux Specific ###
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+.tmp/
+./metadata
