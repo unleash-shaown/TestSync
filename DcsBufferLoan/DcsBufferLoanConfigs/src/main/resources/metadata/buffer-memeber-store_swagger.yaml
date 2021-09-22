@@ -1,0 +1,13 @@
+openapi: 3.0.1
+info:
+  title: buffer-memeber-store
+  description: API Definition of buffer-memeber-store
+  version: 1.0.0
+servers:
+- url: http://localhost:8290/v1/buffer-members
+paths:
+  /:
+    post:
+      responses:
+        default:
+          description: Default response

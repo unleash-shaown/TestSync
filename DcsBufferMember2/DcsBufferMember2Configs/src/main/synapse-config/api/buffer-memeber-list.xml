@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/v1/branches" name="buffer-memeber-list" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" uri-template="/{branchCode}/buffer-members">
+        <inSequence>
+            <header expression="get-property('uri.var.branchCode')" name="branchCode" scope="transport"/>
+            <send>
+                <endpoint>
+                    <address uri="http://localhost:8290/services/buffer-member-get">
+                        <suspendOnFailure>
+                            <initialDuration>0</initialDuration>
+                            <progressionFactor>1</progressionFactor>
+                            <maximumDuration>0</maximumDuration>
+                        </suspendOnFailure>
+                        <markForSuspension>
+                            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                        </markForSuspension>
+                    </address>
+                </endpoint>
+            </send>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence/>
+    </resource>
+</api>

@@ -1,0 +1,10 @@
+---
+key: "buffer-memeber-store-1.0.0"
+name : "buffer-memeber-store"
+displayName : "buffer-memeber-store"
+description: "Sample API"
+version: "1.0.0"
+serviceUrl: "https://{MI_HOST}:{MI_PORT}/v1/buffer-members"
+definitionType: "OAS3"
+securityType: "BASIC"
+mutualSSLEnabled: false
