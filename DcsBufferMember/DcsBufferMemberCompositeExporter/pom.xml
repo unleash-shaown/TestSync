@@ -14,8 +14,38 @@
   <name>DcsBufferMemberCompositeExporter</name>
   <description>DcsBufferMemberCompositeExporter</description>
   <properties>
+    <com.bits.api_._buffer-memeber-store>capp/EnterpriseServiceBus</com.bits.api_._buffer-memeber-store>
+    <com.bits.metadata_._buffer-memeber-store_metadata>capp/EnterpriseServiceBus</com.bits.metadata_._buffer-memeber-store_metadata>
+    <com.bits.metadata_._buffer-memeber-store_swagger>capp/EnterpriseServiceBus</com.bits.metadata_._buffer-memeber-store_swagger>
     <artifact.types>jaggery/app=zip,synapse/priority-executor=xml,synapse/inbound-endpoint=xml,service/rule=aar,synapse/message-store=xml,event/stream=json,service/meta=xml,datasource/datasource=xml,synapse/proxy-service=xml,bpel/workflow=zip,synapse/sequence=xml,synapse/endpointTemplate=xml,carbon/application=car,wso2/gadget=dar,synapse/api=xml,synapse/event-source=xml,synapse/message-processors=xml,event/receiver=xml,lib/dataservice/validator=jar,synapse/template=xml,synapse/endpoint=xml,lib/carbon/ui=jar,lib/synapse/mediator=jar,synapse/metadata=yaml,event/publisher=xml,synapse/local-entry=xml,synapse/task=xml,webapp/jaxws=war,registry/resource=zip,synapse/configuration=xml,service/axis2=aar,synapse/lib=zip,synapse/sequenceTemplate=xml,event/execution-plan=siddhiql,service/dataservice=dbs,web/application=war,lib/library/bundle=jar</artifact.types>
+    <com.bits.proxy-service_._buffer-member-store-consumer>capp/EnterpriseServiceBus</com.bits.proxy-service_._buffer-member-store-consumer>
   </properties>
+  <dependencies>
+    <dependency>
+      <groupId>com.bits.api</groupId>
+      <artifactId>buffer-memeber-store</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.bits.metadata</groupId>
+      <artifactId>buffer-memeber-store_swagger</artifactId>
+      <version>1.0.0</version>
+      <type>yaml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.bits.metadata</groupId>
+      <artifactId>buffer-memeber-store_metadata</artifactId>
+      <version>1.0.0</version>
+      <type>yaml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.bits.proxy-service</groupId>
+      <artifactId>buffer-member-store-consumer</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+  </dependencies>
   <repositories>
     <repository>
       <releases>
