@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="buffer-loan-proposal-list-consumer" startOnLoad="true" transports="jms" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <inSequence>
+            <log level="custom">
+                <property expression="$trp:branchCode" name="BRANCH CODE"/>
+                <property expression="$trp:queryParams" name="QUERY PARAMS"/>
+            </log>
+            <filter regex="true" source="boolean($trp:queryParams)">
+                <then>
+                    <property expression="fn:concat('http://10.42.65.95:8080/v1/branches/', $trp:branchCode, '/buffer-loan-proposals', $trp:queryParams)" name="uri.var.BACKEND_URL" scope="default" type="STRING"/>
+                </then>
+                <else>
+                    <property expression="fn:concat('http://10.42.65.95:8080/v1/branches/', $trp:branchCode, '/buffer-loan-proposals')" name="uri.var.BACKEND_URL" scope="default" type="STRING"/>
+                </else>
+            </filter>
+            <header action="remove" name="queryParams" scope="transport"/>
+            <header action="remove" name="branchCode" scope="transport"/>
+            <call blocking="true">
+                <endpoint>
+                    <http method="get" uri-template="{uri.var.BACKEND_URL}">
+                        <suspendOnFailure>
+                            <initialDuration>-1</initialDuration>
+                            <progressionFactor>-1</progressionFactor>
+                            <maximumDuration>0</maximumDuration>
+                        </suspendOnFailure>
+                        <markForSuspension>
+                            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                        </markForSuspension>
+                    </http>
+                </endpoint>
+            </call>
+            <loopback/>
+        </inSequence>
+        <outSequence>
+            <log level="custom">
+                <property expression="get-property('MessageID')" name="MESSAGE_ID"/>
+            </log>
+            <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+            <send/>
+        </outSequence>
+        <faultSequence/>
+    </target>
+    <parameter name="transport.jms.DestinationType">queue</parameter>
+    <parameter name="transport.jms.Destination">loan-proposal-queue2</parameter>
+    <parameter name="redeliveryPolicy.maximumRedeliveries">10</parameter>
+    <parameter name="transport.jms.ConcurrentConsumers">50</parameter>
+    <parameter name="transport.jms.ReplyDestination">loan-proposal-queue2-response</parameter>
+    <parameter name="transport.jms.ContentType">
+        <rules>
+            <jmsProperty>contentType</jmsProperty>
+            <default>application/json</default>
+        </rules>
+    </parameter>
+    <parameter name="transport.jms.ConnectionFactory">myQueueConnectionFactory</parameter>
+    <parameter name="transport.jms.MaxConcurrentConsumers">100</parameter>
+</proxy>

@@ -8,7 +8,7 @@
     <artifact name="buffer-memeber-list_metadata" groupId="com.bits.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
         <file>src/main/resources/metadata/buffer-memeber-list_metadata.yaml</file>
     </artifact>
-    <artifact name="buffer-member-get-consumer" groupId="com.bits.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/proxy-services/buffer-member-get-consumer.xml</file>
+    <artifact name="buffer-member-list-consumer" groupId="com.bits.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/buffer-member-list-consumer.xml</file>
     </artifact>
 </artifacts>

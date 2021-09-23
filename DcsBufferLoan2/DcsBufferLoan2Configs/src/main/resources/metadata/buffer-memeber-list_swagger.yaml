@@ -6,7 +6,7 @@ info:
 servers:
 - url: http://localhost:8290/v1/branches
 paths:
-  /{branchCode}/buffer-members*:
+  /{branchCode}/buffer-loan-proposals*:
     get:
       parameters:
       - name: branchCode

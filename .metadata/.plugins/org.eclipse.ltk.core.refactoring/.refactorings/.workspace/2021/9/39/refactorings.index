@@ -1,3 +1,17 @@
 1632028292341	Delete resource 'TestSyncRabbitMQ'
 1632028302578	Delete resource 'TestSync/TestSyncRabbitMQ'
 1632028393395	Delete 3 resources
+1632291944026	Rename resource 'DcsBufferMember'
+1632291965451	Rename resource 'DcsBufferLoan'
+1632292017521	Rename resource 'Bulk create buffer members'
+1632292034585	Rename resource 'Create a new buffer-loan-proposal'
+1632292135923	Delete 3 resources
+1632369967837	Delete 2 resources
+1632369971892	Delete resource 'DcsBufferMember2Configs/src/main/synapse-config/api/buffer-memeber-list.xml'
+1632370556786	Delete resource 'DcsBufferMemberConfigs/src/main/synapse-config/api/buffer-memeber-store.xml'
+1632370562259	Delete 2 resources
+1632371074628	Delete resource 'DcsBufferLoan2Configs/src/main/synapse-config/proxy-services/buffer-loan-proposals-get.xml'
+1632371079518	Delete resource 'DcsBufferLoan2Configs/src/main/synapse-config/proxy-services/buffer-loan-proposals-get-consumer.xml'
+1632371343283	Delete resource 'DcsBufferLoanConfigs/src/main/synapse-config/api/buffer-loan-store.xml'
+1632371365925	Delete resource 'DcsBufferLoanConfigs/src/main/synapse-config/proxy-services/buffer-loan-proposals-consumer.xml'
+1632371369152	Delete resource 'DcsBufferLoanConfigs/src/main/synapse-config/proxy-services/buffer-loan-proposals.xml'

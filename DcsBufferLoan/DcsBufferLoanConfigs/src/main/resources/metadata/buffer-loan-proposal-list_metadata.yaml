@@ -1,0 +1,10 @@
+---
+key: "buffer-loan-proposal-list-1.0.0"
+name : "buffer-loan-proposal-list"
+displayName : "buffer-loan-proposal-list"
+description: "Sample API"
+version: "1.0.0"
+serviceUrl: "https://{MI_HOST}:{MI_PORT}/v1/branches"
+definitionType: "OAS3"
+securityType: "BASIC"
+mutualSSLEnabled: false

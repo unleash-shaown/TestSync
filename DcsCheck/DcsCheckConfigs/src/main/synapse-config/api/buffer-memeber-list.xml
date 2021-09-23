@@ -4,7 +4,7 @@
         <inSequence>
             <property name="transport.jms.ContentTypeProperty" scope="axis2" type="STRING" value="Content-Type"/>
             <property name="JMS_WAIT_REPLY" scope="axis2" type="STRING" value="600000"/>
-            <property name="JMS_TIME_TO_LIVE" scope="axis2" type="STRING" value="600000"/>
+            <property name="JMS_TIME_TO_LIVE" scope="axis2" type="STRING" value="120000"/>
             <property action="remove" name="transportNonBlocking" scope="axis2"/>
             <property expression="fn:concat('/', get-property('uri.var.branchCode'), '/buffer-members?')" name="URI_PREFIX" scope="default" type="STRING"/>
             <property expression="fn:replace($axis2:REST_URL_POSTFIX, $ctx:URI_PREFIX, '')" name="QUERY_PARAMS" scope="default" type="STRING" xmlns:fn="http://www.w3.org/2005/xpath-functions"/>
