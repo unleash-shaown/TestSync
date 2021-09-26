@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<api context="/default" name="buffer-memeber-list" xmlns="http://ws.apache.org/ns/synapse">
-    <resource methods="GET" uri-template="/v1/branches/{branchCode}/buffer-members*">
+<api context="/v1/branches" name="buffer-memeber-list" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" uri-template="/{branchCode}/buffer-members*">
         <inSequence>
             <property name="transport.jms.ContentTypeProperty" scope="axis2" type="STRING" value="Content-Type"/>
             <property name="JMS_WAIT_REPLY" scope="axis2" type="STRING" value="600000"/>

@@ -1,0 +1,32 @@
+openapi: 3.0.1
+info:
+  title: buffer-branch-info
+  description: API Definition of buffer-memeber-list
+  version: 1.0.0
+servers:
+- url: http://localhost:8290/v1/branches
+paths:
+  /{branchCode}/buffer-members*:
+    get:
+      parameters:
+      - name: branchCode
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        default:
+          description: Default response
+  /{branchCode}/buffer-loan-proposals*:
+    get:
+      parameters:
+      - name: branchCode
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Default response
