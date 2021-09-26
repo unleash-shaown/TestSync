@@ -15,3 +15,5 @@
 1632371343283	Delete resource 'DcsBufferLoanConfigs/src/main/synapse-config/api/buffer-loan-store.xml'
 1632371365925	Delete resource 'DcsBufferLoanConfigs/src/main/synapse-config/proxy-services/buffer-loan-proposals-consumer.xml'
 1632371369152	Delete resource 'DcsBufferLoanConfigs/src/main/synapse-config/proxy-services/buffer-loan-proposals.xml'
+1632371896913	Delete 3 resources
+1632372029978	Delete resource 'DcsBufferMember2Configs/src/main/synapse-config/proxy-services/buffer-memeber-list.xml'

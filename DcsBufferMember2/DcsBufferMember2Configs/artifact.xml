@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?><artifacts>
-    <artifact name="buffer-memeber-list_swagger" groupId="com.bits.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
-        <file>src/main/resources/metadata/buffer-memeber-list_swagger.yaml</file>
-    </artifact>
-    <artifact name="buffer-memeber-list_metadata" groupId="com.bits.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
-        <file>src/main/resources/metadata/buffer-memeber-list_metadata.yaml</file>
-    </artifact>
-    <artifact name="buffer-memeber-list" groupId="com.bits.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/proxy-services/buffer-memeber-list.xml</file>
-    </artifact>
     <artifact name="buffer-member-list-consumer" groupId="com.bits.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/proxy-services/buffer-member-list-consumer.xml</file>
+    </artifact>
+    <artifact name="buffer-memeber-list" groupId="com.bits.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/buffer-memeber-list.xml</file>
+    </artifact>
+    <artifact name="buffer-memeber-store_swagger" groupId="com.bits.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/buffer-memeber-store_swagger.yaml</file>
+    </artifact>
+    <artifact name="buffer-memeber-store_metadata" groupId="com.bits.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/buffer-memeber-store_metadata.yaml</file>
     </artifact>
 </artifacts>
